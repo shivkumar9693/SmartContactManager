@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<section> <!-- Default content for testing -->
+<div class="container-fluid">
+            <h1>Welcome to Smart Contact Manager</h1>
+            <p>This content will dynamically adjust when the sidebar opens or closes.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Sample Card 1</h5>
+                            <p class="card-text">This is a sample card to show how content adjusts.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Sample Card 2</h5>
+                            <p class="card-text">Notice how the content smoothly moves when sidebar toggles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </section>
+</body>
+</html>

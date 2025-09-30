@@ -1,0 +1,21 @@
+# Maven target folder (already built artifacts)
+target/
+
+# IDE / editor files
+.idea/
+*.iml
+.vscode/
+
+# Git files
+.git/
+.gitignore
+
+# OS system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node modules (if any frontend code exists)
+node_modules/

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<section class="register-section">
+    <div class="login-card shadow-lg p-4">
+
+    <h2 class="text-center mb-4 fw-bold">Login to Your Account</h2>
+
+    <!-- General login error -->
+    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+        Invalid username or password!
+    </div>
+    
+    <div th:if="${param.logout}" class="alert alert-success" role="alert">
+        Successfully Logout.
+    </div>
+
+    <form th:action="@{/do-login}" method="post">
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                <input type="email" name="username" class="form-control" id="email"
+                       placeholder="Enter your email" th:value="${param.username}">
+                      
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                <input type="password" name="password" class="form-control" id="password"
+                       placeholder="Enter your password">
+                   
+            </div>
+        </div>
+
+        <!-- Buttons Row -->
+<div class="d-flex justify-content-between mt-3">
+    <button type="submit" class="btn btn-primary btn-lg flex-fill me-2">Login <i class="bi bi-box-arrow-in-right"></i></button>
+    <a href="/signup" class="btn btn-primary btn-lg flex-fill ms-2">Sign Up</a>
+</div>
+
+
+    </form>
+</div>
+</section>
+
+</body>
+</html>

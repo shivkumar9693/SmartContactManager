@@ -1,0 +1,384 @@
+/* Smart Contact Manager - Complete Sidebar Styles */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Navbar Enhancements */
+.navbar {
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1030;
+    height: 70px;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #2c3e50 !important;
+    font-size: 24px;
+}
+
+/* Navbar Sidebar Toggle Button */
+.navbar-toggle {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 8px;
+    width: 45px;
+    height: 40px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-toggle:hover {
+    transform: translateY(-1px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.navbar-toggle:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Main Container */
+.main-container {
+    display: flex;
+    min-height: calc(100vh - 70px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    width: 280px;
+    position: fixed;
+    top: 70px;
+    left: -280px;
+    height: calc(100vh - 70px);
+    z-index: 1000;
+    background: linear-gradient(180deg, #2c3e50 0%, #3498db 100%);
+    color: #fff;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    padding: 25px 30px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Navigation Components */
+.components {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.components li {
+    margin-bottom: 5px;
+}
+
+.components li a {
+    display: flex;
+    align-items: center;
+    padding: 18px 30px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border-left: 4px solid transparent;
+}
+
+.components li a:hover {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+    color: white;
+    border-left-color: #3498db;
+    padding-left: 35px;
+    transform: translateX(5px);
+}
+
+.components li a:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Icons in navigation */
+.components li a i {
+    margin-right: 15px;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+    color: #3498db;
+    transition: all 0.3s ease;
+}
+
+.components li a:hover i {
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Logout Divider */
+.logout-divider {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logout-divider a {
+    background: linear-gradient(90deg, #e74c3c, #c0392b);
+    border-radius: 8px;
+    margin: 0 20px;
+    border-left: 4px solid #c0392b !important;
+}
+
+.logout-divider a:hover {
+    background: linear-gradient(90deg, #c0392b, #a93226);
+    transform: translateX(0);
+    padding-left: 30px;
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+/* Content Area */
+#content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    min-height: calc(100vh - 70px);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+/* When sidebar is active - push content to the right */
+.main-container.sidebar-active #content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    border-radius: 15px 0 0 0;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Alternative approach using body class */
+body.sidebar-open #content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    border-radius: 15px 0 0 0;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Scrollbar Styling for Sidebar */
+#sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Active Navigation Item */
+.components li.active a {
+    background: linear-gradient(90deg, rgba(52, 152, 219, 0.2), rgba(52, 152, 219, 0.1));
+    border-left-color: #3498db;
+    color: white;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 20px;
+    }
+    
+    .navbar-toggle {
+        width: 40px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    #sidebar {
+        width: 100%;
+        left: -100%;
+    }
+    
+    #sidebar.active {
+        left: 0;
+    }
+    
+    /* On mobile, content should not move */
+    .main-container.sidebar-active #content,
+    body.sidebar-open #content {
+        margin-left: 0;
+        width: 100%;
+        border-radius: 0;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    #content {
+        padding: 15px;
+        border-radius: 0;
+    }
+    
+    .sidebar-header {
+        padding: 20px 25px;
+        font-size: 18px;
+    }
+    
+    .components li a {
+        padding: 15px 25px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-brand {
+        font-size: 18px;
+    }
+    
+    .components li a {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .components li a i {
+        font-size: 16px;
+        margin-right: 12px;
+    }
+}
+
+/* Animation for sidebar backdrop */
+#sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Subtle animations for page load */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.components li {
+    animation: slideInFromLeft 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.components li:nth-child(1) { animation-delay: 0.1s; }
+.components li:nth-child(2) { animation-delay: 0.2s; }
+.components li:nth-child(3) { animation-delay: 0.3s; }
+.components li:nth-child(4) { animation-delay: 0.4s; }
+.components li:nth-child(5) { animation-delay: 0.5s; }
+.components li:nth-child(6) { animation-delay: 0.6s; }
+
+/* Focus styles for accessibility */
+.components li a:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+    background: rgba(52, 152, 219, 0.2);
+}
+
+.navbar-toggle:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* Overlay for mobile when sidebar is open */
+@media (max-width: 768px) {
+    body.sidebar-open::before {
+        content: '';
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+}
+
+/* Card styling for better content presentation */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card-title {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    color: #6c757d;
+    line-height: 1.6;
+}
