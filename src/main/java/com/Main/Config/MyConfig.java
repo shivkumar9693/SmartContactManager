@@ -51,7 +51,7 @@ public class MyConfig {
                     .loginPage("/signin")       // your custom login page
                     .loginProcessingUrl("/do-login")
                     .defaultSuccessUrl("/user/home")
-                    .failureUrl("/error")
+//                    .failureUrl("/error")
                     .permitAll()               // allow everyone to see the login page
                 )
             .csrf(csrf -> csrf.disable());

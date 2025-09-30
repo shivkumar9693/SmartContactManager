@@ -48,11 +48,11 @@ public class Contact {
 		 
 	}
 
-	@Override
-	public String toString() {
-		return "contact [cid=" + cid + ", name=" + name + ", nickname=" + nickname + ", email=" + email + ", about="
-				+ about + ", work=" + work + ", phoneno=" + phoneno + ", imgurl=" + imgurl + ", user=" + user + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "contact [cid=" + cid + ", name=" + name + ", nickname=" + nickname + ", email=" + email + ", about="
+//				+ about + ", work=" + work + ", phoneno=" + phoneno + ", imgurl=" + imgurl + ", user=" + user + "]";
+//	}
 
 	public void setCid(int cid) {
 		this.cid = cid;

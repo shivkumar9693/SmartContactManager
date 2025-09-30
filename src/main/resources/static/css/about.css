@@ -1,0 +1,68 @@
+/* General Section Styling */
+.about-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+    padding: 60px 20px;
+    text-align: center;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.about-section h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #222;
+    position: relative;
+}
+.about-section h2::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: #0d6efd;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Paragraph */
+.about-section p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    color: #444;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.social-icons a {
+    font-size: 2.5rem;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+}
+
+.social-icons a[title="GitHub"]:hover {
+    color: #171515;
+}
+
+.social-icons a[title="LinkedIn"]:hover {
+    color: #0077b5;
+}
+
+.social-icons a[title="Instagram"]:hover {
+    color: #e1306c;
+}
