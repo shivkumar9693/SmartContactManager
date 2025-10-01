@@ -2,34 +2,156 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
 
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Smart Contact Manager</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-<section> <!-- Default content for testing -->
-<div class="container-fluid">
-            <h1>Welcome to Smart Contact Manager</h1>
-            <p>This content will dynamically adjust when the sidebar opens or closes.</p>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Sample Card 1</h5>
-                            <p class="card-text">This is a sample card to show how content adjusts.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Sample Card 2</h5>
-                            <p class="card-text">Notice how the content smoothly moves when sidebar toggles.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        </section>
+<body>
+<section id="dashboard" class="container mt-4">
+
+    <div class="scm-dashboard-wrapper">
+        <div class="scm-hero-gradient"></div>
+
+        <div class="scm-main-container">
+           
+
+            <!-- Welcome Banner -->
+            <section class="scm-welcome-banner">
+                <div class="scm-welcome-content">
+					 <h2 class="scm-welcome-title">
+					   <!--  <i class="bi bi-person-circle text-success welcome-icon-unique"></i> -->
+					    <span th:text="' Welcome Back, ' + ${user?.username} + '!'"></span>
+					    <i class="bi bi-emoji-smile-fill text-warning welcome-icon-unique"></i>
+					</h2>
+
+                    <p class="scm-welcome-subtitle">Manage your contacts effortlessly. Add, edit, view, and organize all in one place.</p>
+                </div>
+                <div class="scm-quick-stats">
+                    <div class="scm-stat-badge">
+                        <i class="fas fa-chart-line scm-stat-icon"></i>
+                        <span class="scm-stat-number">127</span>
+                        <span class="scm-stat-label">Active</span>
+                    </div>
+                    <div class="scm-stat-badge">
+                        <i class="fas fa-calendar scm-stat-icon"></i>
+                        <span class="scm-stat-number">12</span>
+                        <span class="scm-stat-label">Recent</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Grid -->
+            <section class="scm-stats-grid">
+                <div class="scm-stat-card scm-card-primary">
+                    <div class="scm-card-icon-wrapper">
+                        <i class="fas fa-users scm-card-icon"></i>
+                    </div>
+                    <div class="scm-card-content">
+                        <h3 class="scm-card-number">1,247</h3>
+                        <p class="scm-card-label">Total Contacts</p>
+                        <div class="scm-card-trend">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12% from last month</span>
+                        </div>
+                    </div>
+                    <button class="scm-card-action">View All</button>
+                </div>
+
+                <div class="scm-stat-card scm-card-warning">
+                    <div class="scm-card-icon-wrapper">
+                        <i class="fas fa-edit scm-card-icon"></i>
+                    </div>
+                    <div class="scm-card-content">
+                        <h3 class="scm-card-number">89</h3>
+                        <p class="scm-card-label">Recently Updated</p>
+                        <div class="scm-card-trend">
+                            <i class="fas fa-calendar"></i>
+                            <span>Last 7 days</span>
+                        </div>
+                    </div>
+                    <button class="scm-card-action">Manage</button>
+                </div>
+
+                <div class="scm-stat-card scm-card-success">
+                    <div class="scm-card-icon-wrapper">
+                        <i class="fas fa-chart-line scm-card-icon"></i>
+                    </div>
+                    <div class="scm-card-content">
+                        <h3 class="scm-card-number">94%</h3>
+                        <p class="scm-card-label">Profile Completion</p>
+                        <div class="scm-card-trend">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Excellent status</span>
+                        </div>
+                    </div>
+                    <button class="scm-card-action">Insights</button>
+                </div>
+            </section>
+
+            <!-- Quick Actions Section -->
+            <section class="scm-features-section">
+                <h2 class="scm-section-title">Quick Actions</h2>
+                <div class="scm-features-grid">
+                    <!-- <div class="scm-feature-card">
+                        <div class="scm-feature-icon scm-icon-blue">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <h3 class="scm-feature-title">Add New Contact</h3>
+                        <p class="scm-feature-description">Quickly add new contacts with complete information and custom fields.</p>
+                        <button class="scm-feature-btn">Get Started</button>
+                    </div> -->
+				  <div class="scm-feature-card">
+					    <div class="scm-feature-icon scm-icon-blue">
+					        <i class="fas fa-user-plus"></i>
+					    </div>
+					    <h3 class="scm-feature-title">Add New Contact</h3>
+					    <p class="scm-feature-description">
+					        Quickly add new contacts with complete information and custom fields.
+					    </p>
+					    <!-- Button that behaves like link -->
+					    <button class="scm-feature-btn" onclick="window.location.href='/user/addcontact'">
+					        Get Started
+					    </button>
+					</div>
+
+                    
+
+                    <div class="scm-feature-card">
+                        <div class="scm-feature-icon scm-icon-green">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="scm-feature-title">Send Messages</h3>
+                        <p class="scm-feature-description">Communicate with your contacts directly through integrated messaging.</p>
+                        <button class="scm-feature-btn">Send Message</button>
+                    </div>
+
+                    <div class="scm-feature-card">
+                        <div class="scm-feature-icon scm-icon-orange">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 class="scm-feature-title">Quick Call</h3>
+                        <p class="scm-feature-description">Make instant calls to your contacts with one-click dialing feature.</p>
+                        <button class="scm-feature-btn">Start Call</button>
+                    </div>
+
+                    <div class="scm-feature-card">
+                        <div class="scm-feature-icon scm-icon-purple">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 class="scm-feature-title">Location Mapping</h3>
+                        <p class="scm-feature-description">View contact locations on an interactive map for better visualization.</p>
+                        <button class="scm-feature-btn">View Map</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</section>
+
+<!-- Optional JS for interactive hover effect -->
+<script th:src="@{/js/home.js}"></script>
 </body>
 </html>
