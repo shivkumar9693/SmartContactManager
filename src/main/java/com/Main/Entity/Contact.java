@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ContactDetails")
@@ -15,12 +17,15 @@ public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int cid;
+	@NotBlank(message = "Name Field Required")
 	private String name;
 	private String nickname;
+	@NotBlank(message = "Email Field Required")
 	private String email;
 	@Column(length = 1000)
 	private String about;
 	private String work;
+	@NotBlank(message = "Phone No. required")
 	private String phoneno;
 	private String imgurl;
 	@ManyToOne(cascade = CascadeType.ALL)

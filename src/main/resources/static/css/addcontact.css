@@ -220,7 +220,7 @@ body {
     font-size: 13px;
     color: #e53e3e;
     margin-top: -4px;
-    display: none;
+     
     align-items: center;
     gap: 4px;
     animation: slideIn 0.3s ease-out;
@@ -417,3 +417,62 @@ body {
 .rich-text-editor::-webkit-scrollbar-thumb:hover {
     background: #a0aec0;
 }
+/* Flash message container */
+.flash-message {
+    max-width: 900px;          /* align with form-card width */
+    margin: 0 auto 20px auto;  /* center and give space below */
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Base flash style */
+.flash-message .alert {
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.4s ease-out;
+}
+
+/* Success alert */
+.flash-message .alert-success {
+    background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+    color: white;
+    border: none;
+}
+
+/* Error alert */
+.flash-message .alert-danger {
+    background: linear-gradient(135deg, #e53e3e 0%, #f56565 100%);
+    color: white;
+    border: none;
+}
+
+/* Warning alert */
+.flash-message .alert-warning {
+    background: linear-gradient(135deg, #d69e2e 0%, #ecc94b 100%);
+    color: #2d3748;
+    border: none;
+}
+
+/* Info alert */
+.flash-message .alert-info {
+    background: linear-gradient(135deg, #3182ce 0%, #4299e1 100%);
+    color: white;
+    border: none;
+}
+
+/* Close button style */
+.flash-message .btn-close {
+    filter: invert(1);  /* make close button visible on gradients */
+    opacity: 0.9;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.flash-message .btn-close:hover {
+    transform: rotate(90deg) scale(1.2);
+    opacity: 1;
+} make changes in this for that popup type
