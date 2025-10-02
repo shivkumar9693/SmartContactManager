@@ -34,3 +34,4 @@ toggleBtn.addEventListener('click', () => {
     localStorage.setItem('sidebarOpen', isOpen);
 });
 
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Profile: ' + ${user.username}">Profile</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+</head>
+<body>
+<section class="scm-profile-section container mt-5">
+    <div class="scm-profile-card card mx-auto">
+        <!-- Profile Image -->
+        <img th:src="@{${user.imgurl != null} ? '/img/' + ${user.imgurl} : '/img/default.jpeg'}"
+             class="scm-profile-img card-img-top" alt="Profile Image">
+
+        <div class="scm-profile-body card-body text-center">
+            <h2 class="scm-profile-name" th:text="${user.username}">Username</h2>
+            <p class="scm-profile-email"><strong>Email:</strong> <span th:text="${user.email}">user@example.com</span></p>
+            <p class="scm-profile-about"><strong>About:</strong> <span th:text="${user.about}">About user...</span></p>
+            <p class="scm-profile-role"><strong>Role:</strong> <span th:text="${user.role}">User</span></p>
+            <p class="scm-profile-active">
+                <strong>Status:</strong> 
+                <span th:text="${user.active} ? 'Active' : 'Inactive'"
+                      th:classappend="${user.active} ? ' scm-active' : ' scm-inactive'">Active</span>
+            </p>
+        </div>
+    </div>
+</section>
+</body>
+</html>

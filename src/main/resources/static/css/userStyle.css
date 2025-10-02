@@ -66,6 +66,72 @@ body {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
+/* ============================= */
+/* Smart Contact Manager Profile */
+/* ============================= */
+
+.scm-profile-section {
+    padding: 40px 0;
+    background-color: #f4f6f8;
+    min-height: 80vh;
+}
+
+/* Profile Card */
+.scm-profile-card {
+    max-width: 450px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.scm-profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Profile Image Circular */
+.scm-profile-img {
+    width: 180px;        /* square size */
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;  /* makes it circular */
+    margin: 0 auto 20px auto; /* center it and add spacing */
+    display: block;
+    border: 3px solid #007bff; /* optional border color */
+}
+
+ 
+
+/* Profile Body */
+.scm-profile-body {
+    padding: 25px;
+}
+
+.scm-profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.scm-profile-body p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.scm-profile-active span.scm-active {
+    color: #28a745; /* Green for active */
+    font-weight: 600;
+}
+
+.scm-profile-active span.scm-inactive {
+    color: #dc3545; /* Red for inactive */
+    font-weight: 600;
+}
+
 
 /* Sidebar Styles */
 #sidebar {

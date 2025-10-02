@@ -1,12 +1,14 @@
 package com.Main.Controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -88,6 +90,7 @@ public class UserController {
 				 contact.setImgurl("default.jpeg");
 			 }else {
 				 contact.setImgurl("default.jpeg");
+				  
 //				 contact.setImgurl(file.getOriginalFilename());
 //				 
 //				 //get path where we save img
@@ -134,5 +137,157 @@ public class UserController {
 		model.addAttribute("totalpage",contacts.getTotalPages());
 		return"normal/viewContact";
 	}
+ 
+	@GetMapping("/contact/{id}")
+	public String getsingle(@PathVariable("id") Integer cid,
+	                        Model model,
+	                        Principal principal) {
+
+	    System.out.println(cid);
+
+	    // 1. Get logged-in user
+	    String name = principal.getName();
+	    User user = repo.getUserByUserName(name);
+
+	    // 2. Try to find contact by ID
+	    Optional<Contact> optional = contactRepo.findById(cid);
+
+	    if (optional.isPresent()) {
+	        Contact contact = optional.get();
+
+	        // 3. Check ownership
+	        if (user.getUserid()==(contact.getUser().getUserid())) {
+	            model.addAttribute("title", contact.getName());
+	            model.addAttribute("contact", contact);
+	            return "normal/contact_details"; // ✅ show details
+	        }
+	    }
+
+	    // 4. If not found OR not authorized
+	    model.addAttribute("contact", null);
+	    model.addAttribute("title", "Error");
+	    return "normal/contact_details"; // ❌ will show "You Don't have Permission..."
+	}
+
+	@GetMapping("/delete/{id}")
+	public String deleteContact(@PathVariable("id") Integer cid,
+	                            Principal principal,
+	                            RedirectAttributes redirectAttributes) {
+
+	    String username = principal.getName();
+	    User user = repo.getUserByUserName(username);
+
+	    Optional<Contact> optional = contactRepo.findById(cid);
+	    if (optional.isPresent()) {
+	        Contact contact = optional.get();
+
+	        if (user.getUserid()==(contact.getUser().getUserid())) {
+	            // ✅ Remove from user's list
+	            user.getList().remove(contact);
+
+	            // ✅ Save user -> orphanRemoval deletes the contact
+	            repo.save(user);
+
+	            redirectAttributes.addFlashAttribute("message", "Contact Deleted Successfully!");
+	            redirectAttributes.addFlashAttribute("alertType", "alert-success");
+	        }
+	    }
+	    return "redirect:/user/view-contact";
+	}
+
+	@GetMapping("/update/{id}")
+	public String showUpdateForm(@PathVariable("id") Integer id, 
+	                             Model model, 
+	                             Principal principal) {
+
+	    Optional<Contact> optional = contactRepo.findById(id);
+	    User user = repo.getUserByUserName(principal.getName());
+
+	    if (optional.isPresent() && optional.get().getUser().getUserid() == user.getUserid()) {
+	        model.addAttribute("contact", optional.get());
+	        model.addAttribute("authorized", true);
+	    } else {
+	        // Not authorized or contact not found
+	        model.addAttribute("contact", null);
+	        model.addAttribute("authorized", false);
+	    }
+
+	    model.addAttribute("title", "Update Contact");
+	    return "normal/updateContact";
+	}
+
+
+
+	@PostMapping("/process-update/{id}")
+	public String processUpdate(@PathVariable("id") Integer id,
+	                            @ModelAttribute Contact contact,
+	                            @RequestParam("imgfile") MultipartFile file,
+	                            Principal principal,
+	                            RedirectAttributes redirectAttributes) throws IOException {
+
+	    // 1. Fetch existing contact
+	    Contact existingContact = contactRepo.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Contact not found"));
+
+	    // 2. Check user ownership
+	    User user = repo.getUserByUserName(principal.getName());
+	    if (existingContact.getUser().getUserid()!=(user.getUserid())) {
+	        redirectAttributes.addFlashAttribute("message", "You are not authorized to update this contact!");
+	        redirectAttributes.addFlashAttribute("alertType", "alert-danger");
+	        return "redirect:/user/view-contact";
+	    }
+
+	    // 3. Update contact fields
+	    existingContact.setName(contact.getName());
+	    existingContact.setNickname(contact.getNickname());
+	    existingContact.setEmail(contact.getEmail());
+	    existingContact.setPhoneno(contact.getPhoneno());
+	    existingContact.setWork(contact.getWork());
+	    existingContact.setAbout(contact.getAbout());
+
+	    // 4. Image Processing
+	    if (file.isEmpty()) {
+	        System.out.println("Image File Empty");
+	        existingContact.setImgurl("default.jpeg");
+	    } else {
+	    	 existingContact.setImgurl("default.jpeg");
+//	        existingContact.setImgurl(file.getOriginalFilename());
+//
+//	        // Get path where we save images
+//	        File saveFile = new ClassPathResource("static/img").getFile();
+//
+//	        // Get target path
+//	        Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + file.getOriginalFilename());
+//
+//	        // Copy file
+//	        Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+//	        System.out.println("File uploaded successfully");
+	    }
+
+	    // 5. Save contact
+	    contactRepo.save(existingContact);
+
+	    // 6. Flash message
+	    redirectAttributes.addFlashAttribute("message", "Contact updated successfully!");
+	    redirectAttributes.addFlashAttribute("alertType", "alert-success");
+
+	    // 7. Redirect to view-contact page (page 0 by default)
+	    return "redirect:/user/view-contact";
+	}
+	
+	@GetMapping("/profile")
+	public String viewProfile(Model model, Principal principal) {
+	    String username = principal.getName();
+	    User user = repo.getUserByUserName(username); // repo = UserRepository
+
+	    model.addAttribute("title", "Profile");
+	    model.addAttribute("user", user);
+	    model.addAttribute("contacts", user.getList()); // user's contacts
+
+	    return "normal/profile";
+	}
+
+    
+
 
 }

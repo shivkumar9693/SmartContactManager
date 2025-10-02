@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${contact.name} + ' - Contact Details'">Contact Details</title>
+    <link rel="stylesheet" th:href="@{/css/contactDetails.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+<section class="scm-contact-details-container">
+
+
+    <div class="scm-contact-card" th:if="${contact}">
+        <!-- Contact Image -->
+        <div class="scm-contact-img-wrapper">
+            <img th:if="${contact.imgurl != null}" th:src="@{/img/{img}(img=${contact.imgurl})}" 
+                 class="scm-contact-img" alt="Profile">
+            <img th:if="${contact.imgurl == null}" th:src="@{/img/default.jpeg}" 
+                 class="scm-contact-img" alt="Default Profile">
+        </div>
+
+        <!-- Contact Info -->
+        <div class="scm-contact-info">
+            <h2 class="scm-contact-name" th:text="${contact.name}">Name</h2>
+            <h4 class="scm-contact-nickname" th:text="${contact.nickname}">Nickname</h4>
+            <p class="scm-contact-email"><i class="fas fa-envelope"></i> <span th:text="${contact.email}">Email</span></p>
+            <p class="scm-contact-phone"><i class="fas fa-phone"></i> <span th:text="${contact.phoneno}">Phone</span></p>
+            <p class="scm-contact-work"><i class="fas fa-briefcase"></i> <span th:text="${contact.work}">Work</span></p>
+            <p class="scm-contact-about"><i class="fas fa-info-circle"></i> <span th:text="${contact.about}">About</span></p>
+        </div>
+
+        <!-- Back Button -->
+        <div class="scm-contact-actions">
+            <a th:href="@{/user/view-contact}" class="scm-back-btn"><i class="fas fa-arrow-left"></i> Back to Contacts</a>
+        </div>
+    </div>
+ 
+      <div th:unless="${contact}" class="text-center mt-5">
+            <h2>😎 Whoops! You are not allowed to edit this contact.</h2>
+            <p>Looks like you tried to sneak in. Go back to your <a th:href="@{/user/view-contact}">contacts</a>.</p>
+        </div>
+</section>
+</body>
+</html>

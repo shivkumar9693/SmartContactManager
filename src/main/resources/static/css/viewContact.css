@@ -46,3 +46,90 @@
         font-size: 14px;
     }
 }
+/* Unique class names prefixed with scm- */
+
+.scm-contact-details-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.scm-contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    width: 400px;
+}
+
+.scm-contact-img-wrapper {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 4px solid #4CAF50;
+}
+
+.scm-contact-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scm-contact-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.scm-contact-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.scm-contact-nickname {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.scm-contact-email,
+.scm-contact-phone,
+.scm-contact-work,
+.scm-contact-about {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.scm-contact-email i,
+.scm-contact-phone i,
+.scm-contact-work i,
+.scm-contact-about i {
+    color: #4CAF50;
+    margin-right: 8px;
+}
+
+.scm-contact-actions {
+    margin-top: 20px;
+}
+
+.scm-back-btn {
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.scm-back-btn:hover {
+    background-color: #45a049;
+}
+
+
+

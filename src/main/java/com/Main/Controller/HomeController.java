@@ -76,7 +76,7 @@ public class HomeController {
 	    try {
 	        // Set default values
 	        user.setActive(true);
-	        user.setImgurl("default.png");
+			/* user.setImgurl("default.jpeg"); */
 	        user.setRole("ROLE_USER");
 	        user.setPassword(encoder.encode(user.getPassword()));
 

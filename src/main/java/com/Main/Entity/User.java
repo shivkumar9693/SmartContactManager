@@ -38,7 +38,7 @@ public class User {
 	private String role;
 	private boolean active;
 	
-	@OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.LAZY,orphanRemoval = true)
 	private List<Contact> list=new ArrayList<>();
 	public int getUserid() {
 		return userid;
